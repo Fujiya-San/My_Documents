@@ -2,10 +2,14 @@
 <html lang="ja">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <script src="Clock.js"></script>
     <head>
         <title>Fujiyaのホームページ</title>
     </head>
-    <body>
+    <body onload="clock();" id="TopOfBody" class="clock">
         <h1>Fujiyaのホームページ</h1>
+        <form name="FormOfClock" action="#TopOfBody" class="clock">
+            <input type="text" name="FieldOfClock" value="" class="clock" readonly/>
+        </form>
     </body>
 </html>

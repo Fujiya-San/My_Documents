@@ -1,4 +1,16 @@
-body {
+body.clock {
     background-color: cornflowerblue;
     color: black;
+}
+form.clock {
+    float: right;
+    text-align: right;
+}
+
+input.clock {
+    font-size: 12px;
+    width: 160px;
+    font-family: monospace;
+    text-align: center;
+    border: 1px dashed #7f7f7f;
 }
