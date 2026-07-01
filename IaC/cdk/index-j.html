@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../../js/Clock/Clock.js"></script>
+    <head>
+        <title>Terraformについて</title>
+    </head>
+    <body onload="clock();" id="TopOfBody" class="clock">
+        <form name="FormOfClock" action="#TopOfBody" class="clock">
+            <input type="text" name="FieldOfClock" value="" class="clock" readonly/>
+        </form>
+        <nav>
+            <ul class="header">
+                <li class="header">
+                    <div class="nav-item">
+                        <a href="../../index.html">トップ</a>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a href="#">プログラミング言語</a>
+                        <ul class="dropdown">
+                            <li><a href="#">準備中</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a href="#">IaC</a>
+                        <ul class="dropdown">
+                            <li><a href="../terraform/index-j.html">IaC (terraform)</a></li>
+                            <li><a href="./index-j.html">IaC (Amazon CDK)</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a href="../../oop/index-j.html">オブジェクト指向プログラミング</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <h1>AWS CDKについて</h1>
+        <div>
+            <h2>Infrastructure as Code</h2>
+            <p>AWS CDKを説明する上で外せない内容が<span style="color:red;">Infrastructure as Code</span>と呼ばれる、インフラをコードで記述することによってバージョン管理、プロビジョニングの自動化
+            を行うことが可能となる技術についてである。</p>
+            <p>Infrastructure as Code(以下: IaC)は先述のようにインフラをコードで管理することでインフラのバージョン管理、プロビジョニングの自動化、構成管理等を行うことが出来る。<br>
+            これにより、以下のような利点がある。</p>
+            <ul>
+                <li>複数の同じ構成のインフラの構築を行う場合に使い回すことが出来、構築に時間がかからない</li>
+                <li>変数の設定ミスによるエラーなどの軽減</li>
+                <li>バージョン管理による切り戻しなどの簡易化</li>
+            </ul>
+            <p>IaCにはさまざまなものが存在している。<br>
+            以下は、その一例である。</p>
+            <ul>
+                <li>ansible</li>
+                <li>AWS CloudFormation</li>
+                <li>Terraform</li>
+                <li>Chef</li>
+                <li>Puppet</li>
+            </ul>
+            <p>例えば、ansibleはRedHat社が開発しているOpne Source Software(以下: OSS)であり、Python製のIaCである。<br>
+                PlayBookと呼ばれるYAMLのファイルに設定情報など構成情報を定義し、定義されたPlayBookに従ってインフラの構築を行うIaCである。<br>
+                そのため他のIaCに比べ学習が容易であり、導入しやすい<br>
+                また、エージェントなどをサーバ側にインストールする必要がなく、pythonが動き、SSH接続ができる環境であればどのような環境でも実行することが出来、導入することができる。<br>
+                一方で、複雑な構成を記述するのに向いていなかったり、条件分岐や反復などが重なると複雑化することがある。</p>
+            <p>このようにそれぞれのIaCごとに特徴などが存在する。<br>
+                今回はその中でも『 **AWS CDK** 』について述べていく。</p>
+        </div>
+        <div>
+            <h2>AWS CDKとは</h2>
+            <p>AWS CDK (AWS Cloud Development Kit)とは、AWS (Amazon Web Service) が提供しているIaC(Infrastructure as Code)の一つである。<br>
+                使用言語はTypeScript、Python、Java、Go、C#/.Net のサポートされている汎用言語を使用し、AWS CDK コンストラクトライブラリと呼ばれる再利用可能なと呼ばれる再利用可能なコードに対して再定義を行い短時間でインフラを構築する短時間でインフラを構築するものである。<br>
+                その後、AWS CDKで記述されたコードはCDKアプリケーションはAWS CloudFormationを介してデプロイ、リリースされる形となる。 
+            </p>
+            <p>AWS CDKによる開発のおおまかな流れは以下のようになる。</p>
+            <ol>
+                <li>PythonやTypeScriptなどのサポートされている言語で構築するAWSリソースをせってする</li>
+                <li>cdk synthを行い、AWS CloudFormationのテンプレートファイルを生成する</li>
+                <li>cdk diffを行い、差分チェックを行う。</li>
+                <li>cdk deployを行い、AWS環境にリソースを作成・反映を行う。</li>
+            </ol>
+            <p>上記のステップを踏むことでインフラの設定や構築を行うことができる。そのためインフラの構築における設定ミスやデプロイメントに関しての負担などが大幅に軽減される。</p>
+        </div>
+    </body>
+</html>

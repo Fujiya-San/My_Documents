@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../style.css">
-    <script src="../js/Clock/Clock.js"></script>
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../../js/Clock/Clock.js"></script>
     <head>
         <title>Terraformについて</title>
     </head>
@@ -11,13 +11,37 @@
             <input type="text" name="FieldOfClock" value="" class="clock" readonly/>
         </form>
         <nav>
-            <ul>
-                <li><a href="../index-j.html">トップ</a></li>
-                <li><a href="#">プログラミング言語</a></li>
-                <li><a href="./index-j.html">IaC</a></li>
-                <li><a href="../oop/index-j.html">オブジェクト指向プログラミング</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#">トップ</a></li>
+            <ul class="header">
+                <li class="header">
+                    <div class="nav-item">
+                        <a href="../../index.html">トップ</a>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a href="#">プログラミング言語</a>
+                        <ul class="dropdown">
+                            <li><a href="#">準備中</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a href="#">IaC</a>
+                        <ul class="dropdown">
+                            <li><a href="./index-j.html">IaC (terraform)</a></li>
+                            <li><a href="../cdk/index-j.html">IaC (Amazon CDK)</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a href="../../oop/index-j.html">オブジェクト指向プログラミング</a>
+                    </div>
+                </li>
             </ul>
         </nav>
         <h1>Terraformについて</h1>
@@ -47,7 +71,7 @@
                 また、エージェントなどをサーバ側にインストールする必要がなく、pythonが動き、SSH接続ができる環境であればどのような環境でも実行することが出来、導入することができる。<br>
                 一方で、複雑な構成を記述するのに向いていなかったり、条件分岐や反復などが重なると複雑化することがある。</p>
             <p>このようにそれぞれのIaCごとに特徴などが存在する。<br>
-                今回はその中でも『**Terraform**』について述べていく。</p>
+                今回はその中でも『 **Terraform** 』について述べていく。</p>
         </div>
         <div>
             <h2>Terraformとは</h2>

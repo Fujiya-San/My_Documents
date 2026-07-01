@@ -1,3 +1,9 @@
+:root {
+    --accent: #ffd166;
+    --bg-dropdown: #2f2f2f;
+    --text-dropdown: #f5f5f5;
+}
+
 html{
     scroll-behavior: smooth;
 }
@@ -24,11 +30,66 @@ nav {
     background-color: dimgray;
     padding-top: 0%;
     box-sizing: border-box;
+    /* position: relative; */
 }
-ul {
+
+/* 各メニュー項目 */
+.nav-item {
+    position: relative;
+}
+
+.nav-item > a:hover,
+.nav-item:hover > a {
+    color: var(--accent);
+}
+
+/* プルダウンメニュー本体 */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: var(--bg-dropdown);
+    color: var(--text-dropdown);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 8px 8px;
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    z-index: 10;
+
+    /* 初期状態は非表示 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+/* マウスオーバー(ホバー)で表示 */
+.nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown li a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--text-dropdown);
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 0; /* 下の a { margin-right: 35px } を打ち消す */
+}
+
+.dropdown li a:hover {
+    background: #444;
+    color: var(--accent);
+}
+
+ul.header {
     display: flex;
 }
-li {
+li.header {
     list-style: none;
 }
 a {
