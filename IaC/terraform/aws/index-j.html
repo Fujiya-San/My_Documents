@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../../js/Clock/Clock.js"></script>
+    <head>
+        <title>Terraformについて</title>
+    </head>
+    <body onload="clock();" id="TopOfBody" class="clock">
+        <form name="FormOfClock" action="#TopOfBody" class="clock">
+            <input type="text" name="FieldOfClock" value="" class="clock" readonly/>
+        </form>
+        <nav>
+            <ul class="header">
+                <li class="header">
+                    <div class="nav-item">
+                        <a class="header" href="../../index.html">トップ</a>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a class="header" href="#">プログラミング言語</a>
+                        <ul class="dropdown">
+                            <li><a class="header" href="#">準備中</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a class="header" href="#">IaC</a>
+                        <ul class="dropdown">
+                            <li><a class="header" href="./index-j.html">IaC (terraform)</a></li>
+                            <li><a class="header" href="../cdk/index-j.html">IaC (Amazon CDK)</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a class="header" href="../../oop/index-j.html">オブジェクト指向プログラミング</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <h1>Terraformについて</h1>
+        <div>
+            <h2>Infrastructure as Code</h2>
+            <p>Terraformを説明する上で外せない内容が<span style="color:red;">Infrastructure as Code</span>と呼ばれる、インフラをコードで記述することによってバージョン管理、プロビジョニングの自動化
+            を行うことが可能となる技術についてである。</p>
+            <p>Infrastructure as Code(以下: IaC)は先述のようにインフラをコードで管理することでインフラのバージョン管理、プロビジョニングの自動化、構成管理等を行うことが出来る。<br>
+            これにより、以下のような利点がある。</p>
+            <ul>
+                <li>複数の同じ構成のインフラの構築を行う場合に使い回すことが出来、構築に時間がかからない</li>
+                <li>変数の設定ミスによるエラーなどの軽減</li>
+                <li>バージョン管理による切り戻しなどの簡易化</li>
+            </ul>
+            <p>IaCにはさまざまなものが存在している。<br>
+            以下は、その一例である。</p>
+            <ul>
+                <li>ansible</li>
+                <li>AWS CloudFormation</li>
+                <li>Terraform</li>
+                <li>Chef</li>
+                <li>Puppet</li>
+            </ul>
+            <p>例えば、ansibleはRedHat社が開発しているOpne Source Software(以下: OSS)であり、Python製のIaCである。<br>
+                PlayBookと呼ばれるYAMLのファイルに設定情報など構成情報を定義し、定義されたPlayBookに従ってインフラの構築を行うIaCである。<br>
+                そのため他のIaCに比べ学習が容易であり、導入しやすい<br>
+                また、エージェントなどをサーバ側にインストールする必要がなく、pythonが動き、SSH接続ができる環境であればどのような環境でも実行することが出来、導入することができる。<br>
+                一方で、複雑な構成を記述するのに向いていなかったり、条件分岐や反復などが重なると複雑化することがある。</p>
+            <p>このようにそれぞれのIaCごとに特徴などが存在する。<br>
+                今回はその中でも『 **Terraform** 』について述べていく。</p>
+        </div>
+        <div>
+            <h2>Terraformとは</h2>
+            <p>Terraformとは、HashiCorpが提供しているIaC(Infrastructure as Code)の一つである。<br>
+                使用言語はHCL(HashiCorp Configuration Language)という独自言語である。そのため、ansibleのように簡単に学習することはできないが、個人的な感想ではansibleよりも構成が見やすくなれるとインフラ構築や運用がやりやすい言語であると思っている。 
+            </p>
+            <p>terraformによる開発の大まかな流れは以下のような形になる。</p>
+            <ol>
+                <li>HCLにてインフラの設定などを記載する。</li>
+                <li>terraform planを実行し、環境との差分や実際に変更される部分を確認する。</li>
+                <li>terraform applyを実行し、環境に変更内容を反映する。</li>
+            </ol>
+            <p>上記のスリーステップを踏むことでインフラの設定や構築を行うことができる。そのためインフラの構築における設定ミスやデプロイメントに関しての負担などが大幅に軽減される。</p>
+        </div>
+    </body>
+</html>

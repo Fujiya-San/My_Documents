@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="../../js/Clock/Clock.js"></script>
+    <head>
+        <title>AWS CDKについて</title>
+    </head>
+    <body onload="clock();" id="TopOfBody" class="clock">
+        <form name="FormOfClock" action="#TopOfBody" class="clock">
+            <input type="text" name="FieldOfClock" value="" class="clock" readonly/>
+        </form>
+        <nav>
+            <ul class="header">
+                <li class="header">
+                    <div class="nav-item">
+                        <a class="header" href="../../index.html">トップ</a>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a class="header" href="#">プログラミング言語</a>
+                        <ul class="dropdown">
+                            <li><a class="header" href="#">準備中</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a class="header" href="#">IaC</a>
+                        <ul class="dropdown">
+                            <li><a class="header" href="../terraform/index-j.html">IaC (terraform)</a></li>
+                            <li><a class="header" href="./index-j.html">IaC (Amazon CDK)</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="header">
+                    <div class="nav-item">
+                        <a class="header" href="../../oop/index-j.html">オブジェクト指向プログラミング</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <h1>AWS CDKについて</h1>
+        <div>
+            <h2>Infrastructure as Code</h2>
+            <div class="paragraph1">
+                <p>AWS CDKを説明する上で外せない内容が<span style="color:red;">Infrastructure as Code</span>と呼ばれる、インフラをコードで記述することによってバージョン管理、プロビジョニングの自動化
+                を行うことが可能となる技術についてである。</p>
+                <p>Infrastructure as Code(以下: IaC)は先述のようにインフラをコードで管理することでインフラのバージョン管理、プロビジョニングの自動化、構成管理等を行うことが出来る。<br>
+                これにより、以下のような利点がある。</p>
+                <ul>
+                    <li>複数の同じ構成のインフラの構築を行う場合に使い回すことが出来、構築に時間がかからない</li>
+                    <li>変数の設定ミスによるエラーなどの軽減</li>
+                    <li>バージョン管理による切り戻しなどの簡易化</li>
+                </ul>
+                <p>IaCにはさまざまなものが存在している。<br>
+                以下は、その一例である。</p>
+                <ul>
+                    <li>ansible</li>
+                    <li>AWS CloudFormation</li>
+                    <li>Terraform</li>
+                    <li>Chef</li>
+                    <li>Puppet</li>
+                </ul>
+                <p>例えば、ansibleはRedHat社が開発しているOpne Source Software(以下: OSS)であり、Python製のIaCである。<br>
+                    PlayBookと呼ばれるYAMLのファイルに設定情報など構成情報を定義し、定義されたPlayBookに従ってインフラの構築を行うIaCである。<br>
+                    そのため他のIaCに比べ学習が容易であり、導入しやすい<br>
+                    また、エージェントなどをサーバ側にインストールする必要がなく、pythonが動き、SSH接続ができる環境であればどのような環境でも実行することが出来、導入することができる。<br>
+                    一方で、複雑な構成を記述するのに向いていなかったり、条件分岐や反復などが重なると複雑化することがある。</p>
+                <p>このようにそれぞれのIaCごとに特徴などが存在する。<br>
+                    今回はその中でも『 **AWS CDK** 』について述べていく。</p>
+            </div>
+        </div>
+        <div>
+            <h2>AWS CDKとは</h2>
+            <div class="paragraph2">
+                <p>AWS CDK (AWS Cloud Development Kit)とは、AWS (Amazon Web Service) が提供しているIaC(Infrastructure as Code)の一つである。<br>
+                    使用言語はTypeScript、Python、Java、Go、C#/.Net のサポートされている汎用言語を使用し、AWS CDK コンストラクトライブラリと呼ばれる再利用可能なと呼ばれる再利用可能なコードに対して再定義を行い短時間でインフラを構築する短時間でインフラを構築するものである。<br>
+                    その後、AWS CDKで記述されたコードはCDKアプリケーションはAWS CloudFormationを介してデプロイ、リリースされる形となる。 
+                </p>
+                <p>AWS CDKによる開発のおおまかな流れは以下のようになる。</p>
+                <ol>
+                    <li>PythonやTypeScriptなどのサポートされている言語で構築するAWSリソースをせってする</li>
+                    <li>cdk synthを行い、AWS CloudFormationのテンプレートファイルを生成する</li>
+                    <li>cdk diffを行い、差分チェックを行う。</li>
+                    <li>cdk deployを行い、AWS環境にリソースを作成・反映を行う。</li>
+                </ol>
+                <p>上記のステップを踏むことでインフラの設定や構築を行うことができる。そのためインフラの構築における設定ミスやデプロイメントに関しての負担などが大幅に軽減される。</p>
+                <p>本記事ではTypeScriptで記述を行っていくこととする。</p>
+            </div>
+        </div>
+        <h1>AWS CDK事始め</h1>
+        <div>
+            <h2>1. 前提条件</h2>
+            <div class="paragraph3">
+                <p>
+                    AWS CDK (以下: CDK) ののインストールには npm (node package manager) を使用するためまず初めに node のインストールを行う。<br>
+                    インストールに関しては <a class="url" href="https://nodejs.org/en/download/">node</a> の公式サイトを参照し、v22.x以上のものをインストールする。<br>
+                    インストール完了後、pathが通っておりnodeとnpmが使える状態であることを確認する。<br>
+                    以下、nodeの確認を実施した結果の例である。
+                </p>
+                <p>
+                    <code class="no-select">$ </code><code>node --version</code><br>
+                    <code>v24.12.0</code>
+                </p>
+                <p>
+                    <code class="no-select">$ </code><code>npm --version</code><br>
+                    <code>11.7.0</code>
+                </p>
+                <p>
+                    次にローカル環境での開発においてAWS環境への認証等を行うためにAWS CLIをインストールを行う。
+                    インストールに関しては <a class="url" href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI</a> の公式サイトを参照し、それぞれのOSに合った最新のバージョンをインストールする。<br>
+                    インストール後、pathが通っており、awsコマンドが使える状態であることを確認する。<br>
+                    以下、AWS CLIの確認を実施した例である。
+                </p>
+                <p>
+                    <code class="no-select">$ </code><code>node --version</code><br>
+                    <code>aws-cli/2.27.41 Python/3.11.6 Linux/5.10.205-195.807.amzn2.x86_64</code>
+                </p>
+            </div>
+            <h2>2. AWS CDKのインストール</h2>
+            <div class="paragraph1">
+                <p>
+                    上記の前提条件が整ったのち、npmを用いてaws cdkをインストールする。<br>
+                    インストールには以下の条件でそれぞれのコマンドを用いて実施する。<br>
+                    <ul>
+                        <li>
+                            グローバルにインストールを行う。<br>
+                            <code class="no-select">$ </code><code>npm install -g aws-cdk</code>
+                        </li>
+                        <li>
+                            ローカルにインストールを行う。<br>
+                            <code class="no-select">$ </code><code>npm install aws-cdk</code>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
