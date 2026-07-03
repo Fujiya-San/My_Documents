@@ -92,7 +92,7 @@ ul.header {
 li.header {
     list-style: none;
 }
-a {
+a.header {
     display: block;
     text-decoration: none;
     color: white;
@@ -127,4 +127,12 @@ div.paragraph3 {
 .page_top_btn:hover {
     background: rgb(255, 0, 0, 0.8);
     color: rgb(255, 255, 255, 0.8);
+}
+
+.no-select {
+  user-select: none;
+}
+
+code {
+    background-color: #fff;
 }
